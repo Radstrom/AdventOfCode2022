@@ -6,21 +6,14 @@ public static class First
     {
         var split = input.Split("\n\n");
 
-        var biggest = 0;
-        foreach (var elf in split)
-        {
-            var totaltCals = 0;
-            foreach (var cals in elf.Split("\n"))
-            {
-                totaltCals += Int32.Parse(cals);
-            }
+        var elfs = split
+            .Select(elf => elf.Split("\n")
+                .Select(int.Parse)
+                .Aggregate((sum, next) => sum += next))
+            .OrderByDescending(x => x)
+            .ToList();
 
-            if (totaltCals > biggest)
-            {
-                biggest = totaltCals;
-            }
-        }
-        
-        return biggest;
+        return elfs
+            .First();
     }
 }
