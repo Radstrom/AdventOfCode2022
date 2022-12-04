@@ -18,16 +18,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Day4\Day4.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
       <None Update="Data">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
       <None Update="TestData">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </None>
-    </ItemGroup>
-
-    <ItemGroup>
-      <ProjectReference Include="..\AdventOfCode2022.Day2\AdventOfCode2022.Day2.csproj" />
     </ItemGroup>
 
 </Project>
