@@ -13,7 +13,7 @@ public static class First
         }
 
         var startSquare = squares
-            .Single(x => x.Height == "S");
+            .Single(x => x.Height == "E");
         return startSquare
             .FindPathToExit();
     }
@@ -45,19 +45,21 @@ public static class First
                 return true;
             }
             
-            return first.Height.First() + 1 >= second.Height.First();
+            return first.Height.First() - 1 <= second.Height.First();
         }
         
         public int FindPathToExit()
         {
-            if (Neighbors.FirstOrDefault(x => x.Height == "E") is not null)
+            if (Neighbors.FirstOrDefault(x => x.Height == "S") is not null)
             {
-                return 1;
+                StepsToExit = 1;
+                return StepsToExit ?? 3000;
             }
 
             if (Neighbors.All(x => x.IsChecked))
             {
-                return Neighbors.MinBy(x => x.StepsToExit)!.StepsToExit ?? 500;
+                StepsToExit = Neighbors.MinBy(x => x.StepsToExit)!.StepsToExit ?? 2000;
+                return StepsToExit ?? 4000;
             }
 
             IsChecked = true;
